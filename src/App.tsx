@@ -40,11 +40,9 @@ import {
   Loader2,
   X,
   Menu,
-  Download,
   Settings
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
-import html2canvas from 'html2canvas';
 
 import { calculateDistance, calculateBearing, cn, formatCoords } from '@/src/lib/utils';
 import { Coordinates, RadioStation, CalculationResult, AppTheme } from '@/src/types';
@@ -94,7 +92,6 @@ export default function App() {
   const [activeLowPowerRegion, setActiveLowPowerRegion] = useState<string | null>(null);
   const [activeSwCategory, setActiveSwCategory] = useState<string | null>(null);
   const [activeJpRegion, setActiveJpRegion] = useState<string | null>(null);
-  const [isCapturing, setIsCapturing] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [isBaseMapsOpen, setIsBaseMapsOpen] = useState(true);
   const [isVworldOpen, setIsVworldOpen] = useState(false);
@@ -766,25 +763,8 @@ export default function App() {
               </section>
             </div>
 
-            <div className="p-4 grid grid-cols-2 gap-2 border-t border-[#1e1e22]">
-              <button 
-                onClick={exportMap} 
-                disabled={isCapturing}
-                className={cn(
-                  "py-3 rounded-xl text-[10px] font-bold flex items-center justify-center gap-2 transition-all",
-                  isCapturing ? "bg-orange-500/20 text-orange-500 cursor-wait" : "bg-white/5 text-gray-300 hover:bg-white/10"
-                )}
-              >
-                {isCapturing ? (
-                  <motion.div animate={{ rotate: 360 }} transition={{ repeat: Infinity, duration: 1, ease: "linear" }}>
-                    <Loader2 className="w-4 h-4" />
-                  </motion.div>
-                ) : (
-                  <Download className="w-4 h-4" />
-                )}
-                {isCapturing ? "CAPTURING..." : t.export}
-              </button>
-              <button onClick={() => setSettingsOpen(true)} className="py-3 bg-white/5 rounded-xl text-[10px] font-bold flex items-center justify-center gap-2 hover:bg-white/10 text-gray-300"><Settings className="w-4 h-4" /> {t.config}</button>
+            <div className="p-4 border-t border-[#1e1e22]">
+              <button onClick={() => setSettingsOpen(true)} className="w-full py-3 bg-white/5 rounded-xl text-[10px] font-bold flex items-center justify-center gap-2 hover:bg-white/10 text-gray-300"><Settings className="w-4 h-4" /> {t.config}</button>
             </div>
           </motion.aside>
         )}
@@ -794,13 +774,12 @@ export default function App() {
         <MapContainer 
           center={[37.5, 127]} zoom={7} scrollWheelZoom className="w-full h-full"
           ref={mapRef} zoomControl={false}
-          preferCanvas={true}
         >
           <TileLayer 
             url={allProviders[activeProviderIndex]?.url || MAP_PROVIDERS[0].url} 
             attribution={allProviders[activeProviderIndex]?.attribution || ''} 
             tms={allProviders[activeProviderIndex]?.tms}
-            crossOrigin="anonymous"
+            crossOrigin={true}
             {...(allProviders[activeProviderIndex]?.options || {})}
           />
           <MapEvents 
