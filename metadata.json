@@ -1,0 +1,13 @@
+{
+  "name": "Wavespace: Radio Distance & Coverage Planner",
+  "description": "A specialized tool for radio broadcasting enthusiasts to calculate and visualize distances between transmitters and receivers. Features station databases, customizable map visuals, and export options.",
+  "requestFramePermissions": [
+    "geolocation"
+  ],
+  "majorCapabilities": [
+    "Google Maps Integration",
+    "Firebase Firestore Database",
+    "Coordinate Search & Calculation",
+    "Custom UI Themes & Fonts"
+  ]
+}
