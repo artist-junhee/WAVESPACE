@@ -1,20 +1,7 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# 라디오 Dxing을 위한 지도
 
-# Run and deploy your AI Studio app
+많은 관심 부탁드립니다!
 
-This contains everything you need to run your app locally.
+## 개발자 포트폴리오
 
-View your app in AI Studio: https://ai.studio/apps/5c78d3d6-ff7a-44c3-94a2-1b04684bfe2b
-
-## Run Locally
-
-**Prerequisites:**  Node.js
-
-
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+(추후 추가 예정)
